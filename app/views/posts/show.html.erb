@@ -12,5 +12,7 @@
   <p><%=h comment.body %></p>
 <% end -%>
 
+<%= render :partial => 'comments/form' %>
+
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
