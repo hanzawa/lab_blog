@@ -8,6 +8,11 @@
   <%=h @post.body %>
 </p>
 
+<p>
+  <b>Author:</b>
+  <%=h @post.author.try(:name) %>
+</p>
+
 <% @post.comments.each do |comment| -%>
   <p><%=h comment.body %></p>
 <% end -%>

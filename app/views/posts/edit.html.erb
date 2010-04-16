@@ -12,6 +12,10 @@
     <%= f.text_area :body %>
   </p>
   <p>
+    <%= f.label :author_id %><br />
+    <%= f.select :author_id, Author.all.map{|a|[a.name, a.id]} %>
+  </p>
+  <p>
     <%= f.submit 'Update' %>
   </p>
 <% end %>
