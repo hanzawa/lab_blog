@@ -21,10 +21,11 @@ class CommentsController < ApplicationController
     end
   end
 
-  # GET /comments/new
-  # GET /comments/new.xml
+  # GET /posts/1/comments/new
+  # GET /posts/1/comments/new.xml
   def new
-    @comment = Comment.new
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,15 +38,16 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
   end
 
-  # POST /comments
-  # POST /comments.xml
+  # POST /posts/1/comments
+  # POST /posts/1/comments.xml
   def create
-    @comment = Comment.new(params[:comment])
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.new(params[:comment])
 
     respond_to do |format|
       if @comment.save
         flash[:notice] = 'Comment was successfully created.'
-        format.html { redirect_to(@comment) }
+        format.html { redirect_to(@post) }
         format.xml  { render :xml => @comment, :status => :created, :location => @comment }
       else
         format.html { render :action => "new" }
